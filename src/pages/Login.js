@@ -28,7 +28,7 @@ const Login = () => {
     if (status === "success") {
       toast[status](message);
       sessionStorage.setItem("user", JSON.stringify(user));
-      status === "success" && navigate("/dashboard");
+      status === "success" && navigate("/books");
     } else {
       toast[status](message);
     }

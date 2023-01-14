@@ -14,3 +14,98 @@
   margin: 2rem;
   border-radius: 10px;
 }
+
+/* dashboard layout  */
+
+.dashboard-layout {
+  width: 100vw;
+  display: flex;
+}
+.dashboard-main {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+/* sidebar  */
+aside {
+  flex: 0.5;
+  min-height: 100vh;
+  background: rgb(163, 160, 147);
+}
+.top {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  margin: 1rem auto;
+}
+.top img {
+  width: 50%;
+  border-radius: 15rem;
+}
+
+.bottom ul {
+  padding: 0;
+  list-style: none;
+}
+
+.bottom {
+  padding-left: 15px;
+}
+.bottom ul .link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  text-decoration: none;
+  color: black;
+}
+.bottom ul .link li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.bottom ul .link:hover {
+  background: black;
+  color: white;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+.bottom ul .title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin: 1rem 0 0.5rem 0;
+  text-decoration: underline;
+}
+
+.content {
+  min-height: 85vh;
+}
+
+/* add book  */
+
+.add .add-top,
+.add .add-bottom {
+  padding: 2rem;
+  margin: 20px;
+  box-shadow: 2px 4px 10px 1px rgba(red, green, blue, alpha);
+}
+.add-top {
+  display: flex;
+  justify-content: end;
+}
+.add-top h1 {
+  color: rgb(163, 160, 147);
+  font-style: 1.5rem;
+}
+
+.add-bottom {
+  display: flex;
+  gap: 2rem;
+}
+.add-bottom label {
+  font-weight: 500;
+}
