@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Sidebar = () => {
+const Sidebar = ({ user }) => {
   return (
     <aside>
       <div className="top">
@@ -18,18 +18,24 @@ const Sidebar = () => {
             <i className="fa-solid fa-book-open-reader"></i>
             <span>All Books</span>
           </Link>
+          {user?.role === "teacher" && (
+            <>
+              <Link to="/books/add" className="link">
+                <i className="fa-solid fa-book"></i>
+                <span>Add Books</span>
+              </Link>
+              <Link to="/transactions" className="link">
+                <i className="fa-solid fa-book-open-reader"></i>
+                <span>Transactions</span>
+              </Link>
+            </>
+          )}
+
           <Link to="/mybooks" className="link">
             <i className="fa-solid fa-book-open-reader"></i>
             <span>My Books</span>
           </Link>
-          <Link to="/books/add" className="link">
-            <i className="fa-solid fa-book"></i>
-            <span>Add Books</span>
-          </Link>
-          <Link to="/transactions" className="link">
-            <i className="fa-solid fa-book-open-reader"></i>
-            <span>Transactions</span>
-          </Link>
+
           <p className="title"> User</p>
           <Link to="/profile" className="link">
             <i className="fa-solid fa-user"></i>

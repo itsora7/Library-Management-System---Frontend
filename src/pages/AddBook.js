@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Spinner } from "react-bootstrap";
-import DashboardLayout from "../components/layout/DashboardLayout";
+import DashboardLayout from "../components/layout/DashboardLayout.js";
 import book from "../assets/books.jpg";
-
+import { toast } from "react-toastify";
+import { addBook } from "../helpers/axios.js";
 const AddBook = () => {
   const [formData, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -11,9 +12,16 @@ const AddBook = () => {
     const { name, value } = e.target;
     setData({ ...formData, [name]: value });
   };
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    const { status, message } = await addBook(formData);
+
+    if (status) {
+      setIsLoading(false);
+      return toast[status](message);
+    }
+    return;
   };
 
   return (
