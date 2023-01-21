@@ -9,6 +9,7 @@ import AddBook from "./pages/AddBook";
 import DashboardLayout from "./components/layout/DashboardLayout";
 import MrBooks from "./pages/MrBooks";
 import Transaction from "./pages/Transaction";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
           <Route path="/books" element={<Books />}></Route>
           <Route path="/books/add" element={<AddBook />}></Route>
           <Route path="/mybooks" element={<MrBooks />}></Route>
-          <Route path="/tranasctions" element={<Transaction />}></Route>
+          <Route path="/transactions" element={<Transaction />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

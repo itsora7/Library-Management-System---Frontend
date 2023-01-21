@@ -223,3 +223,28 @@ export const getAllTransactions = async () => {
     };
   }
 };
+
+export const updatePassword = async (passInfo) => {
+  try {
+    const userID = getUserFromSessionStorage();
+
+    if (!userID) {
+      return {
+        status: "error",
+        message: "Please login first",
+      };
+    }
+    const { data } = await axios.patch(userEp + "/password-update", passInfo, {
+      headers: {
+        Authorization: userID,
+      },
+    });
+
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};

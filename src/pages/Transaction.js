@@ -30,7 +30,7 @@ const Transaction = () => {
               </tr>
             </thead>
             <tbody>
-              {transactions?.map((transaction, i) => {
+              {transactions?.map((transaction, i) => (
                 <tr key={transaction?._id} className="text-center">
                   <td>{i + 1}</td>
                   <td style={{ width: "15%" }}>
@@ -42,7 +42,11 @@ const Transaction = () => {
                   </td>
                   <td>{transaction?.borrowedBook?.title}</td>
                   <td>{transaction?.borrowedBook?.author}</td>
-                  <td>{transaction?.borrowedBy}</td>
+                  <td>
+                    {transaction?.borrowedBy?.userFname +
+                      " " +
+                      transaction?.borrowedBy?.userLname}
+                  </td>
                   <td>
                     {new Date(transaction?.createdAt).toLocaleDateString()}
                   </td>
@@ -50,12 +54,14 @@ const Transaction = () => {
                     className={
                       transaction?.returnDate ? "text-success" : "text-denger"
                     }
-                  ></td>{" "}
-                  {transaction?.returnDate
-                    ? new Date(transaction?.returnDate).toLocaleDateString()
-                    : "Not yet returned"}{" "}
-                </tr>;
-              })}
+                  >
+                    {" "}
+                    {transaction?.returnDate
+                      ? new Date(transaction?.returnDate).toLocaleDateString()
+                      : "Not yet returned"}
+                  </td>{" "}
+                </tr>
+              ))}
             </tbody>
           </Table>
         </Row>
