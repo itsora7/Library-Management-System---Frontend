@@ -1,18 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import BookCard from "./BookCard";
 
-const BookLists = ({ books, fetchBooks, user }) => {
-  const data = Array.from(books);
-
+const BookLists = () => {
+  const { books } = useSelector((state) => state.user);
   return (
     <div className="books-list">
-      {data?.map((book) => (
-        <BookCard
-          key={book._id}
-          book={book}
-          user={user}
-          fetchBooks={fetchBooks}
-        />
+      {books?.map((book) => (
+        <BookCard key={book._id} book={book} />
       ))}
     </div>
   );

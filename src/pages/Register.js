@@ -5,10 +5,12 @@ import InputFields from "../components/inputs/InputFields";
 import Layout from "../components/layout/Layout";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { registerNewUser } from "../helpers/axios.js";
+import { useDispatch } from "react-redux";
+import { registerAction } from "../redux/user/UserAction";
 
 export const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({});
 
   const handleOnChange = (e) => {
@@ -27,9 +29,7 @@ export const Register = () => {
     if (confirmPassword !== rest.password) {
       return toast.error("Password doesnot match");
     }
-    const { status, message } = await registerNewUser(rest);
-    toast[status](message);
-    status === "success" && navigate("/");
+    dispatch(registerAction(rest)) && navigate("/login");
   };
   const inputs = [
     {

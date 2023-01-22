@@ -2,7 +2,11 @@ import React from "react";
 import { Button, Card } from "react-bootstrap";
 import { borrowBook, deleteBook } from "../helpers/axios";
 import { toast } from "react-toastify";
-const BookCard = ({ book, user, fetchBooks }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { getBooksAction } from "../redux/book/BookAction";
+const BookCard = ({ book }) => {
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.user);
   const hadleBorrow = async (bookID) => {
     if (bookID) {
       const { status, message } = await borrowBook(bookID);
@@ -19,7 +23,7 @@ const BookCard = ({ book, user, fetchBooks }) => {
     ) {
       if (bookID) {
         const { status, message } = await deleteBook(bookID);
-        toast[status](message) && fetchBooks();
+        toast[status](message) && dispatch(getBooksAction());
       }
     }
   };
@@ -35,7 +39,7 @@ const BookCard = ({ book, user, fetchBooks }) => {
           <Button variant="warning" onClick={() => hadleBorrow(book._id)}>
             Borrow
           </Button>
-          {user?.role === "teacher" && (
+          {userInfo?.role === "teacher" && (
             <Button variant="danger" onClick={() => handleDelete(book._id)}>
               Delete
             </Button>

@@ -1,23 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { Nav } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { loginSuccess, logoutSuccess } from "../redux/user/UserSlice";
 const Header = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState({});
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const u = JSON.parse(sessionStorage.getItem("user"));
-
-    if (u) {
-      setUser(u);
-    }
-    return;
-  }, []);
+  const { userInfo } = useSelector((state) => state.user);
   const handleLogout = () => {
-    sessionStorage.removeItem("user");
-    navigate("/");
+    dispatch(logoutSuccess());
+    navigate("/login");
   };
 
   return (
@@ -27,10 +22,10 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
           <Nav className="ms-auto">
-            {user?._id ? (
+            {userInfo?._id ? (
               <>
                 <div className="d-flex gap-2">
-                  <h5>Welcome Back {user?.fName}</h5>
+                  <h5>Welcome Back {userInfo?.fName}</h5>
                   <Link to="/" onClick={() => handleLogout()}>
                     Logout
                   </Link>
@@ -38,10 +33,10 @@ const Header = () => {
               </>
             ) : (
               <>
-                <NavLink to="/" className="mx-3">
+                <NavLink to="/login" className="mx-3">
                   Login
                 </NavLink>
-                <NavLink to="/">Register</NavLink>
+                <NavLink to="/register">Register</NavLink>
               </>
             )}
           </Nav>

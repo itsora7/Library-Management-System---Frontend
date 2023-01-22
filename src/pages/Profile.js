@@ -51,6 +51,50 @@ const Profile = () => {
   }, []);
   return (
     <DashboardLayout>
+      <Modal show={showForm} onHide={() => setShowPassForm(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title> First Name</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="p-3">
+            <Form onSubmit={submitUpdatePass}>
+              <Form.Group className="mb-3">
+                <Form.Label>Current Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="currentPassword"
+                  placeholder="Enter your current password"
+                  value={updatePassForm.password}
+                  onChange={handleOnPassChange}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>New Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  placeholder="Enter a password"
+                  value={updatePassForm.password}
+                  onChange={handleOnPassChange}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirm your password"
+                  value={updatePassForm.password}
+                  onChange={handleOnPassChange}
+                />
+              </Form.Group>
+              <Button variant="success" type="submit">
+                Update Password
+              </Button>
+            </Form>
+          </div>
+        </Modal.Body>
+      </Modal>
       <Modal show={showPassForm} onHide={() => setShowPassForm(false)}>
         <Modal.Header closeButton>
           <Modal.Title> Update Password</Modal.Title>
